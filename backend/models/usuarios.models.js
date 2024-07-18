@@ -14,7 +14,6 @@ const userSchema = new conexion.Schema({
     },
     rol: {
         type: String,
-        required: true,
         default: 'guest'
     },
     cedula: {
@@ -25,7 +24,7 @@ const userSchema = new conexion.Schema({
         type: Boolean,
         default: true
     }
-});
+}, { versionKey: false });
 
 const userModel = conexion.model('usuarios', userSchema);
 
