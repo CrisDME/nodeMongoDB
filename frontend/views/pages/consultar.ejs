@@ -2,23 +2,26 @@
 <%- include('../partials/header') %>
 
 <h1>Consultar Usuarios</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Correo</th>
-            <th>Rol</th>
-            <th>Cédula</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% usuarios.forEach(usuario => { %>
+    <table>
+        <thead>
             <tr>
-                <td><%= usuario.correo %></td>
-                <td><%= usuario.rol %></td>
-                <td><%= usuario.cedula %></td>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Cédula</th>
+                <th>acciones</th>
             </tr>
-        <% }) %>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <% usuarios.forEach(usuario => { %>
+                <tr>
+                    <td><%= usuario.correo %></td>
+                    <td><%= usuario.rol %></td>
+                    <td><%= usuario.cedula %></td>
+                    <td><%= usuario.acciones %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+        
+    </table>
 
 <%- include('../partials/footer') %>

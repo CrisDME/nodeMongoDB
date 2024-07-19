@@ -13,13 +13,17 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    text-align: center;
 }
 
 header {
     background-color: #333;
-    color: #fff;
     padding: 1rem;
     text-align: center;
+}
+a{
+    color: #fff;
+    text-decoration: none;
 }
 
 nav ul {
@@ -30,7 +34,6 @@ nav ul {
 nav ul li {
     display: inline;
     margin-right: 1rem;
-    color: #fff;
     text-decoration: none;
 }
 
@@ -88,14 +91,15 @@ footer {
 }
 
 table {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
+    width: 80%;
+    max-width: 80%;
+    border-collapse: separate;
     margin: 2rem 0;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    scrollbar-width: thin;
+    scrollbar-width: auto;
+    position: -webkit-sticky;
+    position: sticky;
 }
 
 thead {
@@ -117,7 +121,7 @@ tbody td {
     padding: 1rem;
     border: 1px solid #ddd;
     white-space: nowrap;
-    overflow: hidden;
+    overflow: auto;
     text-overflow: ellipsis; 
 }
 

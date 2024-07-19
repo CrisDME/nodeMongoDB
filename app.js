@@ -1,7 +1,9 @@
 const express = require('express');
-const mongoose = require('./config/connection');
+const mongoose = require('./backend/config/connection');
 const bodyParser = require('body-parser');
 const path = require('path');
+require ("dotenv").config();
+
 
 const app = express();
 
@@ -13,9 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/static', express.static(path.join(__dirname, '../frontend/static')));
 
-app.use('/', require('./routes/index'));
-app.use('/consultar', require('./routes/consultar'));
-app.use('/insertar', require('./routes/insertar'));
+app.use('/', require('./backend/routes/index'));
+app.use('/consultar', require('./backend/routes/consultar'));
+app.use('/insertar', require('./backend/routes/insertar'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Servidor listo mor, pillelo: ${PORT}`));
