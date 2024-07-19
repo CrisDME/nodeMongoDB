@@ -9,11 +9,11 @@ const app = express();
 
 // ejs como el motor de las vistas
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../frontend/views'));
+app.set('views', path.join(__dirname, './frontend/views'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/static', express.static(path.join(__dirname, '../frontend/static')));
+app.use('/static', express.static(path.join(__dirname, './frontend/static')));
 
 app.use('/', require('./backend/routes/index'));
 app.use('/consultar', require('./backend/routes/consultar'));
