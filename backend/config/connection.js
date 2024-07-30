@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require ("dotenv").config();
 
-const uri ='mongodb+srv://AdminMassage:M9DNvDsjPwquFpFw@clusteradso2669734.ptidq8a.mongodb.net/prueba?retryWrites=true&w=majority';
+const uri =`mongodb+srv://${process.env.USERBD}:${process.env.PASSBD}@clusteradso2669734.ptidq8a.mongodb.net/${process.env.NAMEBD}?retryWrites=true&w=majority`;
 
 mongoose.connect(uri, {});
 
