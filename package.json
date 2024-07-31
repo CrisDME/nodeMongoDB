@@ -12,6 +12,7 @@
   "author": "Cristian Macias <maciasespitia@hotmail.com> (https://github.com/CrisDME)",
   "license": "ISC",
   "dependencies": {
+    "datatables.net-dt": "^2.1.2",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",

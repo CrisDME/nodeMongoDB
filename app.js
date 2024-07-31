@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('./backend/config/connection');
 const bodyParser = require('body-parser');
 const path = require('path');
 require ("dotenv").config();
@@ -16,8 +15,7 @@ app.use(bodyParser.json());
 app.use('/static', express.static(path.join(__dirname, './frontend/static')));
 
 app.use('/', require('./backend/routes/index'));
-app.use('/consultar', require('./backend/routes/usuarios.routes'));
-app.use('/insertar', require('./backend/routes/insertar'));
+app.use('/usuarios', require('./backend/routes/usuarios.routes'));
 
 app.get('/probarCorreo', (req, res) => {
     const emailServices = require('./backend/utils/emailServices');

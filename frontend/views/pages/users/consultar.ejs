@@ -1,8 +1,19 @@
-<%- include('../partials/head') %>
-<%- include('../partials/header') %>
+<%- include('../../partials/head') %>
+<%- include('../../partials/header') %>
+
+<script>
+    import DataTable from 'datatables.net-dt';
+    let table = new DataTable('#searchUser', {
+        responsive: true,
+    });
+
+    $(document).ready( function () {
+        $('#searchUser').DataTable();
+    });
+</script>
 
 <h1>Consultar Usuarios</h1>
-    <table>
+    <table id="searchUser">
         <thead>
             <tr>
                 <th>Correo</th>
@@ -24,4 +35,4 @@
         
     </table>
 
-<%- include('../partials/footer') %>
+<%- include('../../partials/footer') %>

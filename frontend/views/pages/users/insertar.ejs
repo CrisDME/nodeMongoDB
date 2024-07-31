@@ -1,9 +1,9 @@
-<%- include('../partials/head') %>
-<%- include('../partials/header') %>
+<%- include('../../partials/head') %>
+<%- include('../../partials/header') %>
 
 <div class="container">
     <h1>Insertar Nuevo Usuario</h1>
-    <form action="/insertar" method="POST">
+    <form action="/usuarios/insertar" method="POST">
         <div class="form-group">
             <label for="correo">Correo:</label>
             <input type="email" id="correo" name="correo" required>
@@ -24,4 +24,4 @@
     </form>
 </div>
 
-<%- include('../partials/footer') %>
+<%- include('../../partials/footer') %>

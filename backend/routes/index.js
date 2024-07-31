@@ -8,7 +8,6 @@ router.get('/', mostrarPaginaPrincipal);
 module.exports = router;
 
 
-
 /*
 const express = require('express');
 const usuarioController = require('../controllers/usuarios.controller');

@@ -7,7 +7,7 @@ const mostrarPaginaPrincipal = (req, res) => {
 const consultarUsuarios = async (req, res) => {
   try {
     const usuarios = await Usuario.find();
-    res.render('pages/consultar', { title: 'Consultar Usuarios - MongoDB', usuarios });
+    res.render('pages/users/consultar', { title: 'Consultar Usuarios - MongoDB', usuarios });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error al consultar usuarios');
@@ -19,7 +19,7 @@ const insertarUsuario = async (req, res) => {
     const { correo, pass, rol, cedula } = req.body;
     const nuevoUsuario = new Usuario({ title: 'Registrar Usuarios - MongoDB', correo, pass, rol: rol || 'guest', cedula });
     await nuevoUsuario.save();
-    res.redirect('/consultar');
+    res.redirect('/usuarios/consultar');
   } catch (err) {
     console.error(err);
     res.status(500).send('Error al insertar usuario');
@@ -27,7 +27,7 @@ const insertarUsuario = async (req, res) => {
 };
 
 const mostrarFormularioInsercion = (req, res) => {
-    res.render('pages/insertar', { title: 'Insertar Nuevo Usuario - MongoDB' });
+    res.render('pages/users/insertar', { title: 'Insertar Nuevo Usuario - MongoDB' });
 };
 
 const actulizar = async (req, res) => {
