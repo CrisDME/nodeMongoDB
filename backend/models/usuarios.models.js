@@ -12,6 +12,12 @@ const userSchema = new conexion.Schema({
         minLength: [5, 'La contraseña debe tener al menos 5 caracteres'],
         maxLength: [20, 'La contraseña debe tener como máximo 20 caracteres']
     },
+    direccion: {
+        type: String,
+        required: [true, 'La dirección es obligatoria'],
+        trim: true,
+        maxLength: [20, 'La contraseña debe tener como máximo 20 caracteres']
+    },
     rol: {
         type: String,
         default: 'guest'
