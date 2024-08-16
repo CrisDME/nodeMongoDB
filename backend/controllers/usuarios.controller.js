@@ -1,13 +1,13 @@
 const Usuario = require('../models/usuarios.models');
 
 const mostrarPaginaPrincipal = (req, res) => {
-  res.render('pages/index', { title: 'Inicio - MongoDB' });
+  res.render('pages/index', { title: 'Inicio - StoreMac' });
 };
 
 const consultarUsuarios = async (req, res) => {
   try {
     const usuarios = await Usuario.find();
-    res.render('pages/users/consultar', { title: 'Consultar Usuarios - MongoDB', usuarios });
+    res.render('pages/users/consultar', { title: 'Consultar Usuarios - StoreMac', usuarios });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error al consultar usuarios');

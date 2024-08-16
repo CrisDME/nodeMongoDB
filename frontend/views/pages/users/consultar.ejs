@@ -1,38 +1,78 @@
 <%- include('../../partials/head') %>
 <%- include('../../partials/header') %>
 
+<h1>Consultar Usuarios</h1>
+<table id="searchUser" class="display">
+    <thead>
+        <tr>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Cédula</th>
+            <th>Habilitado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% usuarios.forEach(usuario => { %>
+            <tr>
+                <td><%= usuario.correo %></td>
+                <td><%= usuario.rol %></td>
+                <td><%= usuario.cedula %></td>
+                <td><%= usuario.habilitado %></td>
+                <td>
+                    <button class="edit-btn">Editar</button>
+                    <button class="delete-btn">Eliminar</button>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
 <script>
-    import DataTable from 'datatables.net-dt';
-    let table = new DataTable('#searchUser', {
-        responsive: true,
-    });
-
-    $(document).ready( function () {
-        $('#searchUser').DataTable();
+    $(document).ready(function() {
+        $('#searchUser').DataTable({
+            paging: true,         // Habilita la paginación
+            searching: true,      // Habilita la búsqueda
+            ordering: false,       // Habilita la ordenación
+            info: true,           // Muestra información
+            lengthChange: true,   // Permite cambiar la longitud de la página
+            pageLength: 10,       // Longitud de página predeterminada
+            lengthMenu: [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]], // Opciones de longitud de página
+            buttons: [            // Botones para exportar datos
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+            // dom: 'Bfrtlip',  juega con la ubicación de los botones
+            dom: 'Bfrtlip', // Reposiciona los elementos
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay datos disponibles en la tabla",
+                "info": "Mostrando START a END de TOTAL entradas",
+                "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                "infoFiltered": "(filtrado de MAX entradas totales)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar MENU entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "No se encontraron registros coincidentes",
+                "paginate": {"first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "aria": {
+                    "sortAscending": ": activar para ordenar la columna de manera ascendente",
+                    "sortDescending": ": activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "print": "Imprimir"
+                }
+            }
+        });
     });
 </script>
-
-<h1>Consultar Usuarios</h1>
-    <table id="searchUser">
-        <thead>
-            <tr>
-                <th>Correo</th>
-                <th>Rol</th>
-                <th>Cédula</th>
-                <th>acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% usuarios.forEach(usuario => { %>
-                <tr>
-                    <td><%= usuario.correo %></td>
-                    <td><%= usuario.rol %></td>
-                    <td><%= usuario.cedula %></td>
-                    <td><%= usuario.acciones %></td>
-                </tr>
-            <% }) %>
-        </tbody>
-        
-    </table>
-
 <%- include('../../partials/footer') %>

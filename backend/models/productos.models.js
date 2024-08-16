@@ -14,7 +14,7 @@ const productSchema = new conexion.Schema({
         required: [true, 'La descripcion es obligatoria']
     },
     precio: {
-        type: String,
+        type: Number,
         default: [0, 'El precio por defecto es 0'],
         min: [0, 'El precio por defecto es 0']
     },

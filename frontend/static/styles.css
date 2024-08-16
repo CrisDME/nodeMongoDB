@@ -8,6 +8,11 @@ body {
     overflow-x: hidden;
 }
 
+#title {
+    text-align: center;
+    margin-top: 2rem;
+}
+
 .container {
     width: 90%;
     max-width: 1200px;
@@ -90,41 +95,27 @@ footer {
     bottom: 0;
 }
 
-table {
-    width: 80%;
-    max-width: 80%;
-    border-collapse: separate;
-    margin: 2rem 0;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    scrollbar-width: auto;
-    position: -webkit-sticky;
-    position: sticky;
+#searchUser_wrapper {
+    margin: 0 auto;
+    width: 90%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-thead {
-    background-color: #007bff;
-    color: #fff;
+.edit-btn, .delete-btn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-thead th {
-    padding: 1rem;
-    text-align: left;
-    border: 1px solid #ddd;
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tbody td {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    white-space: nowrap;
-    overflow: auto;
-    text-overflow: ellipsis; 
-}
-
-tbody tr:hover {
-    background-color: #cce5ff;
+.delete-btn {
+    background-color: #f44336;
+    color: white;
 }
