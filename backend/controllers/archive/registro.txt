@@ -1,0 +1,9 @@
+{
+  correo: 'correo2323@correo.com',
+  pass: '78987897',
+  rol: 'Cliente',
+  cedula: '6767673',
+  habilitado: true,
+  _id: new ObjectId('66c54a3332d5819c410af59b'),
+  fechaRegistro: 2024-08-21T02:00:19.242Z
+}

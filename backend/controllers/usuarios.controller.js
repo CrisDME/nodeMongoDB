@@ -1,4 +1,6 @@
 const Usuario = require('../models/usuarios.models');
+const registrar = require('../../backend/utils/resgistroActividades')
+const path = require('path');
 
 const mostrarPaginaPrincipal = (req, res) => {
   res.render('pages/index', { title: 'Inicio - StoreMac' });
@@ -19,6 +21,7 @@ const insertarUsuario = async (req, res) => {
     const { correo, pass, rol, cedula } = req.body;
     const nuevoUsuario = new Usuario({ title: 'Registrar Usuarios - MongoDB', correo, pass, rol: rol || 'guest', cedula });
     await nuevoUsuario.save();
+    await registrar(path.join(__dirname,'archive/registro.txt'),String(nuevoUsuario))
     res.redirect('/usuarios/consultar');
   } catch (err) {
     console.error(err);
