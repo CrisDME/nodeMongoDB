@@ -27,7 +27,7 @@ const insertarUsuario = async (req, res) => {
 };
 
 const mostrarFormularioInsercion = (req, res) => {
-    res.render('pages/users/insertar', { title: 'Insertar Nuevo Usuario - MongoDB' });
+  res.render('pages/users/insertar', { title: 'Insertar Nuevo Usuario - MongoDB' });
 };
 
 const actulizar = async (req, res) => {
