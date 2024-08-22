@@ -1,5 +1,12 @@
 <%- include('../partials/head') %>
-<%- include('../partials/header') %>
+<header>
+    <nav>
+        <div id="nav-right">
+            <button class="modalBtn" id="loginButton">Iniciar Sesión</button>
+            <button class="modalBtn" id="registerButton">Registrarse</button>
+        </div>
+    </nav>
+</header>
 
 <div id="loginModal" class="modal">
     <div class="modal-content">
@@ -20,7 +27,7 @@
 
 <div id="registrarModal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="closeMdReg">&times;</span>
         <h2>Registrar Usuario</h2>
         <form id="registerForm">
         <label for="correo">Correo:</label>
@@ -37,7 +44,29 @@
 
 <div class="jumbotron">
     <h1>Bienvenidos</h1>
-    <p>Tenemos los mejores productos del mercado</p>
+    <p>¡Tenemos las mejores prendas del mercado!</p>
+</div>
+
+<div class="product-grid">
+    <!-- Ejemplo de una tarjeta de producto -->
+    <% productos.forEach(producto => { %>
+        <div class="product-card">
+            <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+            <h2><%= producto.nombre %></h2>
+            <p>Referencia: <%= producto.referencia %></p>
+            <p>Precio: $<%= producto.precio %></p>
+            <p>Tallas: <%= producto.tallas.join(', ') %></p>
+            <div class="card-actions">
+                <button class="btn btn-success">Agregar al Carrito</button>
+                <select>
+                    <% for(let i = 1; i <= 10; i++) { %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+    <% }) %>
+</div>
 </div>
 
 <script>
@@ -52,6 +81,21 @@ document.getElementsByClassName('close')[0].onclick = function() {
 window.onclick = function(event) {
     if (event.target == document.getElementById('loginModal')) {
         document.getElementById('loginModal').style.display = "none";
+    }
+}
+
+// Modal registrar
+document.getElementById('registerButton').onclick = function() {
+    document.getElementById('registrarModal').style.display = "block";
+}
+
+document.getElementsByClassName('closeMdReg')[0].onclick = function() {
+    document.getElementById('registrarModal').style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('registrarModal')) {
+        document.getElementById('registrarModal').style.display = "none";
     }
 }
 </script>
