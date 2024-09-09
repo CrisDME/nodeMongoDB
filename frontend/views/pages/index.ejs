@@ -4,10 +4,15 @@
         <div id="nav-right">
             <button class="modalBtn" id="loginButton">Iniciar Sesión</button>
             <button class="modalBtn" id="registerButton">Registrarse</button>
+            <li style="float: right;">
+                <button id="cart-button" class="cart-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+                  🛒 Carrito
+                </button>
+            </li>
         </div>
     </nav>
 </header>
-
+<%- include('../partials/cartOffcanvas') %>
 <div id="loginModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -22,7 +27,7 @@
         <button type="submit">Iniciar Sesión</button>
         </form>
         <div class="register-option">
-            <p>¿No tienes cuenta? <a href="#" id="registerLink">Regístrate aquí</a></p>
+            <p>¿No tienes cuenta?</p> - <a href="#" id="registerLink">Regístrate aquí</a>
             <p><a href="#">¿Olvidaste tu contraseña?</a></p>
           </div>
     </div>
@@ -78,9 +83,8 @@
             <h2><%= producto.nombre %></h2>
             <p>Referencia: <%= producto.referencia %></p>
             <p>Precio: $<%= producto.precio %></p>
-            <p>Tallas: <%= producto.tallas.join(', ') %></p>
             <div class="card-actions">
-                <button class="btn btn-success">Agregar al Carrito</button>
+                <button class="btn btn-success" onclick="addToCart('<%= producto._id %>', '<%= producto.nombre %>', '<%= producto.precio %>', 1)">Agregar al carrito</button>
                 <select>
                     <% for(let i = 1; i <= 10; i++) { %>
                         <option value="<%= i %>"><%= i %></option>
@@ -121,5 +125,38 @@ window.onclick = function(event) {
         document.getElementById('registerModal').style.display = "none";
     }
 }
+</script>
+<script>
+    let cart = [];
+    let total = 0;
+
+    function toggleCart() {
+        const cart = document.getElementById('cartOffcanvas');
+        cart.classList.toggle('open');
+    }
+
+    function addToCart(productId, productName, productPrice, quantity) {
+        const product = { id: productId, name: productName, price: productPrice, quantity };
+        cart.push(product);
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        
+        cartItems.innerHTML = '';
+        total = 0;
+
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - $${item.price} x ${item.quantity}`;
+            cartItems.appendChild(li);
+            
+            total += item.price * item.quantity;
+        });
+
+        cartTotal.textContent = total.toFixed(2);
+    }
 </script>
 <%- include('../partials/footer') %>

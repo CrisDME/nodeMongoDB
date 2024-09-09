@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
         if (!user) {
             return res.status(400).send('Credenciales incorrectas');
         }
-        res.redirect('/dashboard');
+        res.render('pages/dashboard', { title: `Bienvenido ${User.correo}` });
         
     } catch (err) {
         console.error(err);

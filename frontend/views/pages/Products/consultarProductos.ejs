@@ -1,16 +1,15 @@
 <%- include('../../partials/head') %>
 <%- include('../../partials/header') %>
-<link rel="stylesheet" href="../../static/css/productos.css">
-<h1>Consultar Usuarios</h1>
+<link rel="stylesheet" href="../../../static/css/productos.css">
+<h1>Productos</h1>
 <div class="product-grid">
     <!-- Ejemplo de una tarjeta de producto -->
     <% productos.forEach(producto => { %>
         <div class="product-card">
-            <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+            <!-- <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>"> -->
             <h2><%= producto.nombre %></h2>
             <p>Referencia: <%= producto.referencia %></p>
             <p>Precio: $<%= producto.precio %></p>
-            <p>Tallas: <%= producto.tallas.join(', ') %></p>
             <div class="card-actions">
                 <button class="btn btn-success">Agregar al Carrito</button>
                 <select>

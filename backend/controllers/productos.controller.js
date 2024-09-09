@@ -1,14 +1,15 @@
 const Producto = require('../models/productos.models');
 
 // Mostrar todos los productos
-const mostrarProductos = async (req, res) => {
-  try {
-    const productos = await Producto.find();
-    res.json(productos);
-  } catch (err) {
-    console.error('Error al consultar productos:', err);
-    res.status(500).send('Error al consultar productos');
-  }
+const mostrarProductos = (req, res) => {
+  Producto.find({})
+      .then((productos) => {
+          res.render('pages/products/consultarProductos', { productos, title: "Productos"});
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error al obtener productos");
+      });
 };
 
 // Mostrar un producto por ID
