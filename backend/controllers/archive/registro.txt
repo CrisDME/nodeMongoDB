@@ -1,9 +1,9 @@
 {
-  correo: 'correo2323@correo.com',
-  pass: '78987897',
+  correo: 'maciasespitia@hotmail.com',
+  pass: '12345',
   rol: 'Cliente',
-  cedula: '6767673',
+  cedula: '123456',
   habilitado: true,
-  _id: new ObjectId('66c54a3332d5819c410af59b'),
-  fechaRegistro: 2024-08-21T02:00:19.242Z
+  _id: new ObjectId('66cd6e3b9592d86780f7e3e6'),
+  fechaRegistro: 2024-08-27T06:12:11.250Z
 }

@@ -1,66 +1,74 @@
-const Usuario = require('../models/usuarios.models');
+const Producto = require('../models/productos.models');
 
-const mostrarPaginaPrincipal = (req, res) => {
-  res.render('pages/index', { title: 'Inicio - StoreMac' });
-};
-
-const consultarUsuarios = async (req, res) => {
+// Mostrar todos los productos
+const mostrarProductos = async (req, res) => {
   try {
-    const usuarios = await Usuario.find();
-    res.render('pages/users/consultar', { title: 'Consultar Usuarios - StoreMac', usuarios });
+    const productos = await Producto.find();
+    res.json(productos);
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Error al consultar usuarios');
+    console.error('Error al consultar productos:', err);
+    res.status(500).send('Error al consultar productos');
   }
 };
 
-const insertarUsuario = async (req, res) => {
+// Mostrar un producto por ID
+const mostrarProductoPorId = async (req, res) => {
   try {
-    const { correo, pass, rol, cedula } = req.body;
-    const nuevoUsuario = new Usuario({ title: 'Registrar Usuarios - MongoDB', correo, pass, rol: rol || 'guest', cedula });
-    await nuevoUsuario.save();
-    res.redirect('/usuarios/consultar');
+    const producto = await Producto.findById(req.params.id);
+    if (!producto) {
+      return res.status(404).send('Producto no encontrado');
+    }
+    res.json(producto);
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Error al insertar usuario');
+    console.error('Error al consultar producto:', err);
+    res.status(500).send('Error al consultar producto');
   }
 };
 
-const mostrarFormularioInsercion = (req, res) => {
-    res.render('pages/users/insertar', { title: 'Insertar Nuevo Usuario - MongoDB' });
+// Insertar un nuevo producto
+const insertarProducto = async (req, res) => {
+  try {
+    const nuevoProducto = new Producto(req.body);
+    await nuevoProducto.save();
+    res.status(201).send('Producto creado correctamente');
+  } catch (err) {
+    console.error('Error al insertar producto:', err);
+    res.status(500).send('Error al insertar producto');
+  }
 };
 
-const actulizar = async (req, res) => {
-  
+// Actualizar un producto existente
+const actualizarProducto = async (req, res) => {
+  try {
+    const productoActualizado = await Producto.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!productoActualizado) {
+      return res.status(404).send('Producto no encontrado');
+    }
+    res.send('Producto actualizado correctamente');
+  } catch (err) {
+    console.error('Error al actualizar producto:', err);
+    res.status(500).send('Error al actualizar producto');
+  }
 };
 
+// Eliminar un producto
+const eliminarProducto = async (req, res) => {
+  try {
+    const productoEliminado = await Producto.findByIdAndDelete(req.params.id);
+    if (!productoEliminado) {
+      return res.status(404).send('Producto no encontrado');
+    }
+    res.send('Producto eliminado correctamente');
+  } catch (err) {
+    console.error('Error al eliminar producto:', err);
+    res.status(500).send('Error al eliminar producto');
+  }
+};
 
 module.exports = {
-  mostrarPaginaPrincipal,
-  consultarUsuarios,
-  insertarUsuario,
-  mostrarFormularioInsercion,
-  actulizar
+  mostrarProductos,
+  mostrarProductoPorId,
+  insertarProducto,
+  actualizarProducto,
+  eliminarProducto
 };
-
-
-
-/*
-const userModelo = require('../models/usuarios.models');
-
-exports.consultar = async(req,res)=>{
-    let resultado = await userModelo.find();
-    console.log(resultado)
-}
-
-exports.insertar = async(req,res)=>{
-    const nuevoUsuario ={
-        "correo": "correo1@correo1.com",
-        "pass": "123456",
-        "rol": "admin",
-        "cedula": "123456"
-    };
-    let n = new userModelo(nuevoUsuario);
-    return await n.save();
-}
-*/

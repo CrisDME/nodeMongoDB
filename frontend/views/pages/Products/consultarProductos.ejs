@@ -1,0 +1,86 @@
+<%- include('../../partials/head') %>
+<%- include('../../partials/header') %>
+<link rel="stylesheet" href="../../static/css/productos.css">
+<h1>Consultar Usuarios</h1>
+<div class="product-grid">
+    <!-- Ejemplo de una tarjeta de producto -->
+    <% productos.forEach(producto => { %>
+        <div class="product-card">
+            <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+            <h2><%= producto.nombre %></h2>
+            <p>Referencia: <%= producto.referencia %></p>
+            <p>Precio: $<%= producto.precio %></p>
+            <p>Tallas: <%= producto.tallas.join(', ') %></p>
+            <div class="card-actions">
+                <button class="btn btn-success">Agregar al Carrito</button>
+                <select>
+                    <% for(let i = 1; i <= 10; i++) { %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+<!-- Botón para abrir la modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+    Agregar/Editar Producto
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">Agregar/Editar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="productForm">
+            <input type="hidden" id="productId" name="productId">
+            
+            <div class="mb-3">
+              <label for="referencia" class="form-label">Referencia</label>
+              <input type="text" class="form-control" id="referencia" name="referencia" required>
+            </div>
+  
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+  
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+            </div>
+  
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio</label>
+              <input type="number" class="form-control" id="precio" name="precio" required min="0">
+            </div>
+  
+            <div class="mb-3">
+              <label for="stock" class="form-label">Stock</label>
+              <input type="number" class="form-control" id="stock" name="stock" required min="0">
+            </div>
+  
+            <div class="mb-3">
+              <label for="imagen" class="form-label">Imagen</label>
+              <input type="text" class="form-control" id="imagen" name="imagen" required>
+            </div>
+  
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="habilitado" name="habilitado">
+              <label class="form-check-label" for="habilitado">Habilitado</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="saveProductBtn">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>  
+<%- include('../../partials/footer') %>

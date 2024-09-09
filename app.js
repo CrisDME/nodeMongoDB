@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use('/static', express.static(path.join(__dirname, './frontend/static')));
 
 app.use('/', require('./backend/routes/index'));
+app.use('/login', require('./backend/routes/login.routes'));
 app.use('/usuarios', require('./backend/routes/usuarios.routes'));
 app.use('/productos', require('./backend/routes/productos.routes'));
 

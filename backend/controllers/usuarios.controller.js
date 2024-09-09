@@ -1,10 +1,7 @@
 const Usuario = require('../models/usuarios.models');
+
 const registrar = require('../../backend/utils/resgistroActividades')
 const path = require('path');
-
-const mostrarPaginaPrincipal = (req, res) => {
-  res.render('pages/index', { title: 'Inicio - StoreMac' });
-};
 
 const consultarUsuarios = async (req, res) => {
   try {
@@ -19,7 +16,7 @@ const consultarUsuarios = async (req, res) => {
 const insertarUsuario = async (req, res) => {
   try {
     const { correo, pass, rol, cedula } = req.body;
-    const nuevoUsuario = new Usuario({ title: 'Registrar Usuarios - MongoDB', correo, pass, rol: rol || 'guest', cedula });
+    const nuevoUsuario = new Usuario({ title: 'Registrar Usuarios - MongoDB', correo, pass, rol: rol || 'Cliente', cedula });
     await nuevoUsuario.save();
     await registrar(path.join(__dirname,'archive/registro.txt'),String(nuevoUsuario))
     res.redirect('/usuarios/consultar');
@@ -39,7 +36,6 @@ const actulizar = async (req, res) => {
 
 
 module.exports = {
-  mostrarPaginaPrincipal,
   consultarUsuarios,
   insertarUsuario,
   mostrarFormularioInsercion,
